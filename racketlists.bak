@@ -1,0 +1,15 @@
+#lang racket
+
+(define (check-temps1 temps)
+   (if (empty? temps)
+    true
+   (cond
+   [(< (first temps) 5) false]
+   [(> (first temps) 95) false]
+   [else (check-temps1 (rest temps))])))
+
+(define a (list 96))
+
+(check-temps1 a)
+        
+      

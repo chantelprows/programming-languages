@@ -1,0 +1,17 @@
+#lang racket
+
+(define (default-parms f values)
+  (lambda args
+      (if (equal? (length values) (length args))
+          (apply f args)
+          (apply f (append args (list-tail values
+                                           (length args)))))))
+
+(define (type-parms f types)
+  (lambda args
+    (if ((first types) (first args))
+        (apply f args)
+        (error "ERROR MSG"))))
+
+(define g (type-parms + (list number? number?)))
+(g 8 "hello")
